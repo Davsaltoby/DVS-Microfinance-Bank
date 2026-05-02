@@ -1,3 +1,4 @@
+import { get } from "mongoose";
 import { nibbsClient } from "./nibssClient.js";
 
 const createAccountNibss = async ({ kycType, kycID, dob }) => {
@@ -23,5 +24,7 @@ const getAllAccounts = async () => {
     console.error(error.response?.data);
   }
 };
+
+// getAllAccounts();
 
 export { createAccountNibss };

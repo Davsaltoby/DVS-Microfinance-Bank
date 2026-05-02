@@ -9,10 +9,9 @@ const createNinNibss = async ({ nin, firstName, lastName, dob }) => {
     });
     return res.data;
   } catch (error) {
-    if (error.response?.data.error.includes("NIN already exists")) {
+    if (error.response?.status === 409) {
       throw new Error("NIN already exists");
     }
-    console.log(error.response);
     throw new Error("NIN creation failed");
   }
 };
@@ -24,10 +23,14 @@ const validateNinNibss = async ({ nin }) => {
     });
     return res.data;
   } catch (error) {
-    if (error.response?.status === 409) {
-      throw new Error("NIN already exists");
-    }
-    throw new Error("NIN validation failed");
+    console.error("Error validating NIN:", error.response?.data);
+
+    const status = error.response?.status;
+
+    if (status === 400) throw new Error("Invalid NIN provided");
+    if (status === 409) throw new Error("nin already linked to an account");
+
+    throw new Error("Failed to validate NIN");
   }
 };
 
