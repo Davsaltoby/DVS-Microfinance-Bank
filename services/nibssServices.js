@@ -75,10 +75,21 @@ const accountBalanceEnquiryNibss = async (accountNumber) => {
   }
 };
 
+const transactionStatusEnquiryNibss = async (transactionId) => {
+  try {
+    const res = await nibssClient.get(`/api/transaction/${transactionId}`);
+    return res.data;
+  } catch (err) {
+    console.error(err.response?.data);
+    throw new Error(err.response?.data?.message || err.message);
+  }
+};
+
 export {
   createAccountNibss,
   getAllAccountsNibss,
   nameEnquiryNibss,
   transferNibss,
   accountBalanceEnquiryNibss,
+  transactionStatusEnquiryNibss,
 };
