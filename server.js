@@ -1,16 +1,21 @@
 import "dotenv/config";
 import express from "express";
-import dvsRouter from "./routes/dvsRoute.js";
+import identityRouter from "./routes/identityCreationRoute.js";
 import userRouter from "./routes/userRoutes.js";
+import adminRouter from "./routes/adminRoutes.js";
+import nameEnquiryRoute from "./routes/nameEnquiryRoute.js";
+import transferRoute from "./routes/transferRoute.js";
 import connectDB from "./config/db.js";
 
 const app = express();
 
 app.use(express.json());
 
-app.use("/dvs", dvsRouter);
+app.use("/api/admin", adminRouter);
+app.use("/api/identity", identityRouter);
 app.use("/api/auth", userRouter);
-
+app.use("/api/account", nameEnquiryRoute);
+app.use("/api/transfer", transferRoute);
 const PORT = process.env.PORT || 3000;
 
 const server = async () => {

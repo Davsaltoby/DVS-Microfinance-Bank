@@ -1,7 +1,7 @@
 import axios from "axios";
 import getNibssToken from "./tokenConfig.js";
 
-const nibbsClient = axios.create({
+const nibssClient = axios.create({
   baseURL: process.env.NIBSS_BASE_URL,
   timeout: 10000,
   headers: {
@@ -9,14 +9,14 @@ const nibbsClient = axios.create({
   },
 });
 
-nibbsClient.interceptors.request.use(async (config) => {
+nibssClient.interceptors.request.use(async (config) => {
   const token = await getNibssToken();
   config.headers.Authorization = `Bearer ${token}`;
 
   return config;
 });
 
-const nibbsPublicClient = axios.create({
+const nibssPublicClient = axios.create({
   baseURL: process.env.NIBSS_BASE_URL,
   timeout: 10000,
   headers: {
@@ -24,4 +24,4 @@ const nibbsPublicClient = axios.create({
   },
 });
 
-export { nibbsClient, nibbsPublicClient };
+export { nibssClient, nibssPublicClient };

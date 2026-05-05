@@ -1,8 +1,8 @@
-import { nibbsPublicClient } from "../nibssClient.js";
+import { nibssPublicClient } from "../nibssClient.js";
 
 const createBvnNibss = async ({ bvn, firstName, lastName, dob, phone }) => {
   try {
-    const res = await nibbsPublicClient.post("/api/insertBvn", {
+    const res = await nibssPublicClient.post("/api/insertBvn", {
       bvn,
       firstName,
       lastName,
@@ -20,7 +20,7 @@ const createBvnNibss = async ({ bvn, firstName, lastName, dob, phone }) => {
 
 const validateBvnNibss = async ({ bvn }) => {
   try {
-    const res = await nibbsPublicClient.post("/api/validateBvn", {
+    const res = await nibssPublicClient.post("/api/validateBvn", {
       bvn,
     });
     return res.data;

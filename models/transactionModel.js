@@ -20,7 +20,7 @@ const transactionSchema = new Schema(
     to: { type: String, required: true },
     status: {
       type: String,
-      enum: ["failed", "pending", "success"],
+      enum: ["FAILED", "PENDING", "SUCCESS"],
       required: true,
     },
   },
