@@ -5,6 +5,7 @@ import userRouter from "./routes/userRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
 import enquiryRoute from "./routes/enquiryRoute.js";
 import transferRoute from "./routes/transferRoute.js";
+import transactionStatusRoute from "./routes/transactionStatusRoute.js";
 
 import connectDB from "./config/db.js";
 
@@ -17,6 +18,7 @@ app.use("/api/identity", identityRouter);
 app.use("/api/auth", userRouter);
 app.use("/api/account", enquiryRoute);
 app.use("/api/transfer", transferRoute);
+app.use("/api/transaction", transactionStatusRoute);
 
 const PORT = process.env.PORT || 3000;
 
